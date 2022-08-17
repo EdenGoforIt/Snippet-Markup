@@ -17,3 +17,12 @@ JXS solution will simplify that into the below. As we need to return an array of
 ```
 return (<div> ... </div>);
 ```
+
+## how to add an event to html elements
+We can't add such as `onClick={clickHandler()}` with parenthesis as it will be executed when the code is evaluated first. 
+
+```
+<button onClick={clickHandler}></button>
+<button onClick={()=>{})}></button>
+
+```
