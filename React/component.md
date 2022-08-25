@@ -13,7 +13,7 @@ return React.createElement(
 );
 ```
 
-JXS solution will simplify that into the below. As we need to return an array of elements, we need to wrap it with **parenthesis**. 
+JXS solution will simplify that into the below. As we need to return an array of elements, we need to wrap it with **parenthesis** or one root element (not many `<section></section><section></section>` not allowed ). 
 ```
 return (<div> ... </div>);
 ```
