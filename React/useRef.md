@@ -75,6 +75,9 @@ const elementRef = useRef(); // initialized with undefined
 
         // or you can change the behavior
         elementRef.current.focus();
+
+        // or set the value
+        elementRef.current.value = 'manually set value';
     }, []);
 
     return (
