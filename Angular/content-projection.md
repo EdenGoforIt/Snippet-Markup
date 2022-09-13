@@ -1,5 +1,18 @@
 - when the form is almost the same except some contents
 
+Two ways
+
+- [Normal Way](#normal-way)
+    - [First Parent Component](#first-parent-component)
+    - [Second Parent Component](#second-parent-component)
+    - [Child Component](#child-component)
+- [Injection Slot way (with html element name)](#injection-slot-way-with-html-element-name)
+    - [First Parent Component](#first-parent-component-1)
+    - [Second Parent Component](#second-parent-component-1)
+    - [Child Component](#child-component-1)
+
+# Normal Way
+
 ### First Parent Component
 
 ```
@@ -23,5 +36,37 @@
 <form (ngSubmit)="onSubmit()" #form="ngForm">
     <ng-content></ng-content> // this will render 'Register Form' or 'Login' form depending on the parent component
     <input type="email">
+</form>
+```
+
+# Injection Slot way (with html element name)
+
+### First Parent Component
+
+```
+<auth-form>
+   <h3>Login Form</h3>
+   <button type="submit" (click)="login" >Login</button>
+<auto-form>
+
+```
+
+### Second Parent Component
+
+```
+<auth-form>
+   <h3>Register Form</h3>
+   <button type="submit" (click)="register" >Register</button>
+</auth-form>
+```
+
+### Child Component
+
+```
+<form (ngSubmit)="onSubmit()" #form="ngForm">
+    <ng-content select="h3"></ng-content>
+    <input type="email" />
+    <input type="text" />
+    <ng-content select="button"></ng-content>
 </form>
 ```
