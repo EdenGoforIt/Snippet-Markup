@@ -1,6 +1,5 @@
 - when the form is almost the same except some contents
 
-Two ways
 
 - [Normal Way](#normal-way)
     - [First Parent Component](#first-parent-component)
