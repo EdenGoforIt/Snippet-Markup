@@ -1,11 +1,11 @@
 - when the form is almost the same except some contents
+- As described in Multi-slot Content Projection, you typically use either an **attribute, element, CSS Class**, or some combination of all three to identify where to project your content
 
-
-- [Normal Way](#normal-way)
+- [Single-slot content projection](#single-slot-content-projection)
     - [First Parent Component](#first-parent-component)
     - [Second Parent Component](#second-parent-component)
     - [Child Component](#child-component)
-- [Injection Slot way (with html element name)](#injection-slot-way-with-html-element-name)
+- [Multi-slot content projection](#multi-slot-content-projection)
     - [First Parent Component](#first-parent-component-1)
     - [Second Parent Component](#second-parent-component-1)
     - [Child Component](#child-component-1)
@@ -15,7 +15,7 @@
     - [Different Component (auth-remember)](#different-component-auth-remember)
     - [Child Component](#child-component-2)
 
-# Normal Way
+# Single-slot content projection
 
 ### First Parent Component
 
@@ -43,7 +43,7 @@
 </form>
 ```
 
-# Injection Slot way (with html element name)
+# Multi-slot content projection
 
 ### First Parent Component
 
