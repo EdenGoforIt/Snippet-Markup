@@ -2,7 +2,8 @@
 
 - React code is evaluated in the first place and not update the state afterwards. So we need to use a named function called `useState` for React to update the change made
 - initial value provided `useState(props.title)` is only executed once when the component is evaluated; means not managing reference?
--
+- state changes not happening instantly, but scheduled and managed by React by priority. 
+- React will **state batching** (collect) all state change in the component into one and update all of them together
 
 # Index
 
