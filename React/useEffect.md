@@ -11,6 +11,7 @@
   - [clean up](#clean-up)
   - [only run first time](#only-run-first-time)
   - [how to add dependencies](#how-to-add-dependencies)
+  - [fetch data from the backend](#fetch-data-from-the-backend)
   - [what to not add as dependencies](#what-to-not-add-as-dependencies)
 
 ## clean up
@@ -58,6 +59,23 @@ useEffect(()=>{
 // here we actually don't need isValid as when userName and password changed, we need to run `isValid` function
 
 ```
+
+## fetch data from the backend
+
+as fetchData will be created as a new object when the component is re-evaluated, we need to remember the function that is used to fetch data, 
+
+```
+useEffect(()=>{
+    fetchData();
+},[fetchData]);
+
+
+const fetchData - useCallback(async ()=>{
+  // fetch data here
+
+});
+```
+
 
 ## what to not add as dependencies
 
