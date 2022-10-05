@@ -2,7 +2,7 @@
 
 - useEffect is run after the component is rendered (but it seems like it runs useEffect in order line by line )
 - useEffect is for side effect
--
+- always add dependencies 
 
 # use cases
 

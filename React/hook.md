@@ -1,4 +1,4 @@
 - React hook starts with use such as `useContext, useState`, etc.
 - only use component functions and custom hooks
-- only call them at the top Levels (never nested functions or `blocks (inside if)`)
+- only call them **at the top Levels **(never nested functions or `blocks (inside if)`)
 - always use dependencies in `useEffect`
