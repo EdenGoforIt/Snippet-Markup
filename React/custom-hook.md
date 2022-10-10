@@ -2,7 +2,7 @@
 - outsource stateful logic into re-usable functions
 - can use React hooks and state
 - can use for sending requests as only http methods and body could be different
-- 
+- [Custom Hook http request](https://dev.to/shaedrizwan/building-custom-hooks-in-react-to-fetch-data-4ig6)
 
 
 
