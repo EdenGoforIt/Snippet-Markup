@@ -3,13 +3,10 @@
 - **Observable** (Event Publisher) => **Observer** Subscribes to the Event
 - [Detailed explanation of multicast, subject, observer and observables](https://netbasal.com/understanding-rxjs-multicast-operators-77b3f60af0a2)
 - **Subject** is **Observable** + **Observer** + **Multicast**
-- 
-
-
 
 
 ## why asObservable for Subject
-> A Subject is a special type of Observable that allows values to be multicasted to many Observers. Subjects are like EventEmitters
+> A Subject is a special type of Observable that allows values to be multi-casted to many Observers. Subjects are like EventEmitters
 > The purpose of this is to prevent leaking the "observer side" of the Subject out of an API. Basically to prevent a leaky abstraction when you don't want people to be able to "next" into the resulting observable.
 
 
