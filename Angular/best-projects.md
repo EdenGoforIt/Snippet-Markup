@@ -13,4 +13,8 @@
 - (container and presentational )[https://www.simars.io/angular-test-components-unit-shallow-deep/]
 
 ## ngrx with local storage
-- (ngrx-store-localstorage)[https://stackblitz.com/edit/ngrx-localstorage-128-fix-gzslmg?file=src%2Fapp%2Fstore%2Fmetareducers.ts,src%2Fapp%2Ffeature2%2Fstore%2Fmetareducers.ts]
+- (ngrx-store-localstorage)[https://stackblitz.com/edit/ngrx-localstorage-128-fix-gzslmg?file=src%2Fapp%2Fstore%2Fmetareducers.ts,src%2Fapp%2Ffeature2%2Fstore%2Fmetareducers.ts]'
+
+
+## TypeScript
+- (Coding Guide for naming, etc)[https://github.com/Microsoft/TypeScript/wiki/Coding-guidelines]
