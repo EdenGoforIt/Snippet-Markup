@@ -1,6 +1,10 @@
 # Index
 
-[[__TOC__]]
+- [Index](#index)
+  - [first()](#first)
+  - [scan()](#scan)
+  - [takeWhile()](#takewhile)
+  - [distinctUntil and distinctUntilKeyChanged](#distinctuntil-and-distinctuntilkeychanged)
 
 ## first()
 
@@ -31,5 +35,48 @@ const source$ = of(1,2,3,4);
 const example = source$.pipe(takeWhile(x=> x > 2), true);
 
 //1, 2, 3 (last emitted value which does not meet the condition)
+
+```
+
+## distinctUntil and distinctUntilKeyChanged
+
+ignore not unique values (based on the previous value; if the previous value and the current value same, then ignore it)
+
+```
+const numbers$ = [1,1,1,1,2,3];
+
+numbers$.pipe(
+    distinctUntilChanged()
+).subscribe();
+
+```
+
+modify if needed
+
+```
+const numbers$ = [
+    {name: 'test'},
+    {name: 'test'}
+];
+
+numbers$.pipe(
+    distinctUntilChanged((prev, curr)=>{
+        return prev.name === curr.name;
+    })
+).subscribe(console.log)
+
+```
+
+this can be changed to with `distinctUntilKeyChanged()`
+
+```
+const numbers$ = [
+    {name: 'test'},
+    {name: 'test'}
+];
+
+numbers$.pipe(
+    distinctUntilKeyChanged('name')
+).subscribe(console.log)
 
 ```
