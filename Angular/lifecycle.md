@@ -1,6 +1,7 @@
 # Index
 
 - [Index](#index)
+
   - [OnChange](#onchange)
   - [DoCheck](#docheck)
   - [AfterContentInit](#aftercontentinit)
@@ -8,7 +9,8 @@
   - [add detection change after ngAfterViewInit](#add-detection-change-after-ngafterviewinit)
   - [selector vs ng-content](#selector-vs-ng-content)
 
-[Useful Link](https://www.tektutorialshub.com/angular/afterviewinit-afterviewchecked-aftercontentinit-aftercontentchecked-in-angular/) -[indepth](https://indepth.dev/posts/1494/complete-guide-angular-lifecycle-hooks)
+- [Useful Link](https://www.tektutorialshub.com/angular/afterviewinit-afterviewchecked-aftercontentinit-aftercontentchecked-in-angular/)
+- [this is amazing - read this](https://indepth.dev/posts/1494/complete-guide-angular-lifecycle-hooks)
 
 ## OnChange
 
@@ -16,7 +18,8 @@
 
 ## DoCheck
 
-Run custom change detection
+- Run custom change detection
+- it runs every change life cycle unlike after OnChange (but onChange happens only when input changed)
 
 ## AfterContentInit
 
