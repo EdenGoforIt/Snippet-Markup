@@ -8,11 +8,11 @@
   - [add detection change after ngAfterViewInit](#add-detection-change-after-ngafterviewinit)
   - [selector vs ng-content](#selector-vs-ng-content)
 
-[Useful Link](https://www.tektutorialshub.com/angular/afterviewinit-afterviewchecked-aftercontentinit-aftercontentchecked-in-angular/)
+[Useful Link](https://www.tektutorialshub.com/angular/afterviewinit-afterviewchecked-aftercontentinit-aftercontentchecked-in-angular/) -[indepth](https://indepth.dev/posts/1494/complete-guide-angular-lifecycle-hooks)
 
 ## OnChange
 
-Angular detects any changes to `Input` property
+- Angular detects any changes to `Input` property (only, so normally in the child component)
 
 ## DoCheck
 
