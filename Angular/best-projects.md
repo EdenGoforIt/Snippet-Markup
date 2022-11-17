@@ -7,6 +7,7 @@
 - (list of best practices such as effect)[https://dev.to/this-is-angular/ngrx-tips-i-needed-in-the-beginning-4hno#create-reusable-reducers]
 - (ngrx & LocalStorage )[https://github.dev/bbachi/Angular5Sample]
 - (customer & holiday)[https://github.dev/rainerhahnekamp/ngrx-best-practices/tree/master/apps/eternal/src/app/customer/customers]
+- (Dunkin)[https://angular-training-guide.rangle.io/state-management/ngrx/modifying_your_application_state_by_dispatching_actions]
 
 ## testing
 - (testing NGRX project)[https://issuecloser.com/blog/testing-an-ngrx-project#13]
