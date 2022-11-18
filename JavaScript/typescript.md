@@ -13,6 +13,9 @@
   - [Implicit vs Explicit Type](#implicit-vs-explicit-type)
   - [void](#void)
   - [never type](#never-type)
+  - [Union Type](#union-type)
+  - [Literal Type](#literal-type)
+  - [Function Type](#function-type)
 
 ## Arrow Function and Implicit return
 
@@ -128,4 +131,35 @@ function error(message: string): never {
   throw new Error(message);
 }
 
+```
+
+## Union Type
+
+we have one of several types
+
+type test = ThisType | ThatType;
+
+## Literal Type
+
+A literal is a more concrete sub-type of a collective type. What this means is that "Hello World" is a string, but a string is not "Hello World" inside the type system.
+
+There are three sets of literal types available in TypeScript today: strings, numbers, and booleans; by using literal types you can allow an exact value which a string, number, or boolean must have.
+
+```
+function selectSize(size: 'small' | 'medium'){
+    return size;
+}
+
+selectSize('small');
+
+```
+
+
+## Function Type
+
+named function
+```
+function sumOrder(){
+    
+}
 ```
