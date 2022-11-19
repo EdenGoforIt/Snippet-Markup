@@ -12,3 +12,10 @@
 
 - (source)[https://stackoverflow.com/questions/36986548/when-to-use-asobservable-in-rxjs]
 - (source)[https://rxjs.dev/api/index/class/Subject]
+
+
+## simple explanation
+> **Subject**: only upcoming values
+> **BehaviorSubject**: one previous value and the upcoming values
+> **RelaySubject**: all previous values and upcoming values
+> **AsyncSubject**: latest value when stream is closed
