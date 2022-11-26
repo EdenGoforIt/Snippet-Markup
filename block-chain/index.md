@@ -27,3 +27,6 @@ an immutable chain of transactions is created in order
 If any block is modified in the chain, the hash of later blocks is different. As a result, validation discovers the discrepancy.
 
 
+
+
+

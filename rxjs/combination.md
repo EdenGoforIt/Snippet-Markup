@@ -43,4 +43,12 @@ forJoin({
   number: 3,
   letters: "c"
 }
+
+forJoin([]).subscribe(([oneOb, twoObs]: [string, User]));
+
+// will return
+{
+  number: 3,
+  letters: "c"
+}
 ```
