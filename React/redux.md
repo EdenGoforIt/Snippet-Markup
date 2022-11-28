@@ -41,3 +41,39 @@
 
 same input params **(Old State, Action)** pure functions
 return new state object
+
+## how to start
+
+in `App.js`, wrap the App just like we did with `React Context`.
+You can wrap any component with `Provider` if that's the top most component using Store
+
+```
+import {Provider} from 'react-redux';
+import store from './store/index';
+
+root.render(<Provider store={store}><App /></Provider>);
+
+```
+
+## selector
+
+need to `connect` if `Class` based component
+
+```
+import {useSelector, connect} from 'react-redux';
+
+const counter = useSelector(state=>state.counter);
+
+```
+
+## dispatch
+
+```
+const dispatch = useDispatch();
+
+const incrementHandler = ()=>{
+ dispatch({type: 'increment', amount: 5});
+}
+
+
+```
