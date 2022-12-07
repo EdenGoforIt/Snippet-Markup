@@ -1,5 +1,7 @@
 # index
 
+## syntax
+
 > cout => character output
 > cin => character input
 
@@ -22,5 +24,3 @@ REP(i, 1, n){
 
 }
 ```
-
-
