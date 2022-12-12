@@ -1,5 +1,7 @@
 # Index
 
+- [playground rxjs as well as marvely showing](thinkrx.io/rxjs/)
+
 - [Index](#index)
   - [first()](#first)
   - [scan()](#scan)
