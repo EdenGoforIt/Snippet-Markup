@@ -26,6 +26,7 @@ of(1,2,3).pipe(subscribeOn(asyncScheduler)).subscribe(observer);
 
 ## asyncScheduler
 - similar to `setTimeout`
+- 
 ```
 // work, delay, state
 asyncScheduler.schedule(
@@ -36,3 +37,9 @@ asyncScheduler.schedule(
 );
 
 ```
+
+
+## asapScheduler
+- similar to queueMicroTask or Promise.resolve
+- execute as soon as possible after all synchronous tasks
+- 
