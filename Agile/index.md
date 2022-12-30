@@ -1,0 +1,2 @@
+# index
+- [Agile vs Scrumb](https://asana.com/resources/waterfall-agile-kanban-scrum?utm_campaign=NB--KO--EN--Catch-All--All-Device&utm_source=google&utm_medium=pd_cpc_nb&gclid=EAIaIQobChMI-7mBg9ae_AIVyiFgCh1BxginEAAYASAAEgLDDPD_BwE&gclsrc=aw.ds)

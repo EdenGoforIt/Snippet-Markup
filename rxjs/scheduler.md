@@ -42,4 +42,8 @@ asyncScheduler.schedule(
 ## asapScheduler
 - similar to queueMicroTask or Promise.resolve
 - execute as soon as possible after all synchronous tasks
+
+
+## animationFrameScheduler
+- similar to requestAnimationFrame
 - 
