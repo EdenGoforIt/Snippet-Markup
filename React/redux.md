@@ -77,3 +77,8 @@ const incrementHandler = ()=>{
 
 
 ```
+
+## where to put sync and async code
+
+- sync, side-effects => reducer
+- async, fetching from the server => Components or Action Creator (in the Slice, there is an action creator)
