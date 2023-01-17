@@ -1,5 +1,13 @@
 # index
-- setState is run asynchronously 
+
+- setState is run asynchronously
+
+## Create React
+
+```
+npx create-react-app react-car --template redux-typescript
+```
+
 ## index.js
 
 this means we want to replace html element having Id `root` with `<App /> (Whole React App)`
