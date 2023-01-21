@@ -5,3 +5,5 @@
 - with NavLink, you can set styles
 - Need to use Nav or NavLink to be able to use SPA feature
 -
+
+## how to get params
