@@ -12,3 +12,10 @@ a.sort();  # in-place sort
 ```
 
 
+
+
+## use python 3 command
+```
+c:\python39\python.exe -m pip install --upgrade pip
+
+```
