@@ -73,3 +73,7 @@ interval(0, animationFrameScheduler).pipe(
 })
 ;
 ```
+
+## queueScheduler
+
+- execute tasks synchronously, on queue
