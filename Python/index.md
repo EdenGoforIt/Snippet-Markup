@@ -18,4 +18,9 @@ a.sort();  # in-place sort
 ```
 c:\python39\python.exe -m pip install --upgrade pip
 
+set PATH=%PATH%;C:\Python34\Scripts
+
+py -m pip install jupyterlab
+
+py -m jupyterlab
 ```
