@@ -12,13 +12,22 @@ a.sort();  # in-place sort
 ```
 
 
+## run jupiter
 
+```
+py -m jupyterlab
+```
 
 ## use python 3 command
 ```
 c:\python39\python.exe -m pip install --upgrade pip
+c:\python39\python.exe -m pip install pandas
+
+
 
 py -m pip install jupyterlab
 
 py -m jupyterlab
+
+py -m pip install pandas 
 ```
