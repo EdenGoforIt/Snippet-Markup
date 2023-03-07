@@ -49,3 +49,15 @@ data.iloc[3,4] = True
 ```
 pd.read_csv("../datasets/wine_data.csv", nrows=5, usecols=[6,7,8,9,10,11,12])
 ```
+
+## Cheatsheet
+```
+wine_df.dropna()
+wine_df.dropna(how='all') // when all values are empty
+wine_df.dropna(thresh=4)  // 4 values in a row should be present
+wine_df[wine_df['3'].notnull()] // show rows having values in column 3 
+
+
+
+
+```
