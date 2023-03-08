@@ -73,9 +73,32 @@ col_dict = {
 wine_df.rename(columns=col_dict);   # rename column properly
 
 data.sort_values(by = ['population'],ascending=False) # sort by ascending
-data[['nation','population','year']].sort_values(ascending=[False,True], by=['nation', 'population']) # by multiple 
+data[['nation','population','year']].sort_values(ascending=[False,True], by=['nation', 'population']) # by multiple
 
 data.population.rank(ascending=False) # rank
+
+ts_data.head() # items ascending
+ts_data.tail() # items from the bottom
+
+ts_data.info() # get the data type for each column
+
+ts_data['Date'] = pd.to_datetime(ts_data['Date'], format='%Y-%m-%d') # convert object to date
+
+## making indexes
+
+ts_data = ts_data.set_index(['Date']) # make date as index or record identifier
+ts_data = pd.read_csv('../datasets/appleStockPrice.csv', index_col='Date', parse_dates=True)
+
+
+## get rows having row name of
+ts_data.loc['2016'] # return rows having 2016
+ts_data.loc['2016-2']
+
+ts_data.loc['2015-09':'2016-12']  # between
+ts_data.truncate(before='2015-12-1', after='2016-1-31') # use truncate
+
+## order of the index
+ts_data.sort_index(ascending=True, inplace=True)
 
 
 
