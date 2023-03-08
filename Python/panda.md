@@ -2,13 +2,13 @@
 
 ## select row
 
-```
+```python
  data.iloc[4:6]
 ```
 
 ## select by column
 
-```
+```python
 data['population']
 data[['population']] // with column name
 
@@ -16,7 +16,7 @@ data[['population']] // with column name
 
 ## select by row and column
 
-```
+```python
  data.loc[4:6, ['year']]
 
 data.loc[4:6, 'nation': 'year']
@@ -25,20 +25,20 @@ data.loc[4:6, [0,2]]
 
 ## add a new column
 
-```
+```python
 data['newColunm'] = np.sqrt(data['population']).astype(int)
 
 ```
 
 ## delete a column
 
-```
+```python
 data = data.drop(column=['sqrtPopulation'])
 ```
 
 ## change the value
 
-```
+```python
 data.iloc[3,4] = True
 ```
 
@@ -46,13 +46,13 @@ data.iloc[3,4] = True
 
 ## read specific rows and columns
 
-```
+```python
 pd.read_csv("../datasets/wine_data.csv", nrows=5, usecols=[6,7,8,9,10,11,12])
 ```
 
 ## Cheatsheet
 
-```
+```python
 wine_df.dropna()  # drop records having empty values in any column
 wine_df.dropna(how='all') # when all values are empty
 wine_df.dropna(thresh=4)  # 4 values in a row should be present
@@ -100,7 +100,19 @@ ts_data.truncate(before='2015-12-1', after='2016-1-31') # use truncate
 ## order of the index
 ts_data.sort_index(ascending=True, inplace=True)
 
+# columns
+ts_data['shifted'] = ts_data['Adj Close'].shift(1) # add a new column called shifted and move one row up
 
+# Resample
+ts_data['Adj Close'].resample('A').ohlc() #Compute open, high, low and close values of a group, excluding missing values.
+ts_data.loc['1990': '2010'].resample('Q').mean()
+plt.plot( ts_data[['Adj Close']].resample('5A').mean()) # every 5 years
 
+## plot
+
+rcParams['figure.figsize'] = 15, 10
+ts_data.plot(subplots=True)              # two lines to show a graph separately for each column
+
+ts_data[['Adj Close', 'Volume']].loc['2007':'2010'].plot(subplots=True)  # grab columns and rows having those names
 
 ```
