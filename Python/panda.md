@@ -115,4 +115,7 @@ ts_data.plot(subplots=True)              # two lines to show a graph separately 
 
 ts_data[['Adj Close', 'Volume']].loc['2007':'2010'].plot(subplots=True)  # grab columns and rows having those names
 
+
+oil_price.to_csv('test.csv')
+
 ```
