@@ -3,6 +3,7 @@
 - [playground rxjs as well as marvely showing](thinkrx.io/rxjs/)\
 - U can mock httpClient.get to return throwError(error), or return throwError(new Error()) in your TestService 
 But HttpTestingController is designed specifically for this.
+- An observable is cold when data is produced inside the Observable.
 
 - [Index](#index)
   - [first()](#first)
