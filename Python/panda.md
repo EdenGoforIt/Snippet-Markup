@@ -118,8 +118,10 @@ ts_data[['Adj Close', 'Volume']].loc['2007':'2010'].plot(subplots=True)  # grab 
 
 oil_price.to_csv('test.csv')
 
+server_data.describe() # easily extract most of the simple summary statistics.
 
 
- 
+
+
 
 ```
