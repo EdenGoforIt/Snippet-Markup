@@ -131,4 +131,8 @@ cm.reset_index() # when reset index or row number (normally row number is used f
 pd.concat([df1, df3], axis=1) # when adding more columns 
 
 pd.concat([df1, df2], ignore_index=True, sort=False) # when adding more rows 
+
+df1[[0,1]].combine_first(df2[[0,1]])  # override the value from the right to the left if empty
+
+
 ```
