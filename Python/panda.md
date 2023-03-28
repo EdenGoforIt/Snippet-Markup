@@ -120,7 +120,7 @@ oil_price.to_csv('test.csv')
 
 server_data.describe() # easily extract most of the simple summary statistics.
 
-%pip install bokeh # install packages. 
+%pip install bokeh # install packages.
 
 cm = cm.iloc[1:] # show the row from the row 1 when we make the header with the first row
 
@@ -128,11 +128,26 @@ cm.columns = ['Column1', 'Column2'] # when we redefine the columns
 
 cm.reset_index() # when reset index or row number (normally row number is used for index and row number mixed up when adding or deleting rows)
 
-pd.concat([df1, df3], axis=1) # when adding more columns 
+pd.concat([df1, df3], axis=1) # when adding more columns
 
-pd.concat([df1, df2], ignore_index=True, sort=False) # when adding more rows 
+pd.concat([df1, df2], ignore_index=True, sort=False) # when adding more rows
 
 df1[[0,1]].combine_first(df2[[0,1]])  # override the value from the right to the left if empty
+
+
+```
+
+# web scraping
+
+```
+page = BeautifulSoup(html_doc, "html.parser") # using html.parser instead of lxml
+body = page.find(name='body')
+h1 = body.find(name='h1') # Find the 'h1' element inside of the 'body' tag
+p = page.find(name='p')
+all_p = page.findAll(name='p')
+all_p[0]['id'] # Specific attribute value of a specific element # access through ID
+page.find(name='p', attrs={"id":"intro"}) # access through ID
+page.findAll("li", "hobby") # find by class
 
 
 ```
