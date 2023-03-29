@@ -149,5 +149,8 @@ all_p[0]['id'] # Specific attribute value of a specific element # access through
 page.find(name='p', attrs={"id":"intro"}) # access through ID
 page.findAll("li", "hobby") # find by class
 
+result = json.loads(obj) # deserialize to objects
+
+as_json = json.dumps(result) #serialize to json or string
 
 ```
