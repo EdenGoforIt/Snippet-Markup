@@ -16,14 +16,17 @@
 
 # React.memo
 
+- React renders the component and memoizes the result. Before the next render, if the new props are the same, React reuses the memoized result, skipping the next rendering
 - When we want to evaluate when only the **props** changes
 - why we are not using `React.memo` in all places? because it comes at cost, React need to store previous prop values for comparison
-- `<Button onClick={onClickHandler}/>` even if we wrap this `Button` component, that will be evaluated because `onClickHandler` which is the function from the parent component will be re-created when the parent component when the parent component is re-evaluated
+- `<Button onClick={onClickHandler}/>` even if we wrap this `Button` component, that will be evaluated because `onClickHandler` which is the function from the parent component will be re-created when the parent component is re-evaluated
 - Because primitive values will be the same but `function, object and array` will have different references
 - That's where `useCallBack` is useful as it's telling React not to create a new function every new execution
 
 # useCallBack
 
+- function is an object and by using a callback we are not changing the object for rerendering.
+- useCallback() hook is called every time MyComponent renders
 - Save **function** in the memory and use the same function without create anew
 - Use when the function is never changed
 - don't need to provide dependencies for the function you are mapping as useCallBack will memorize it already
