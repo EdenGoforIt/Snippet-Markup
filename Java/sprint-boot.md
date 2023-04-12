@@ -7,3 +7,5 @@
 > spring-boot-devtools : change detect lively or refresh HTML
 > Spache Maven or Gradle is a build system
 > You can use Java or Kotlin in Spring boot
+> `pom.xml` dependencies 
+> 
