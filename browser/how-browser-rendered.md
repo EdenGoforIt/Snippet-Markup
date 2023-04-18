@@ -3,6 +3,7 @@
 What happens behind the scenes when we type google.com in a browser?
 
 - [source](https://scalar.usc.edu/nehvectors/100hardtruths-fakenews/76-learn-what-happens-when-you-type-a-letter-on-your-keyboard)
+- [medium](https://medium.com/jspoint/how-the-browser-renders-a-web-page-dom-cssom-and-rendering-df10531c9969#:~:text=When%20a%20web%20page%20is,the%20Render%2DTree%20from%20it.)
 
 **Table of Contents**
 
@@ -40,45 +41,47 @@ When you just press "g", the browser receives the event and the entire auto-comp
 To pick a zero point, let's choose the Enter key on the keyboard hitting the bottom of its range. At this point, an electrical circuit specific to the enter key is closed (either directly or capacitively). This allows a small amount of current to flow into the logic circuitry of the keyboard, which scans the state of each key switch, debounces the electrical noise of the rapid intermittent closure of the switch, and converts it to a keycode integer, in this case 13. The keyboard controller then encodes the keycode for transport to the computer. This is now almost universally over a Universal Serial Bus (USB) or Bluetooth connection.
 
 In the case of the USB keyboard:
-* The keycode generated is stored by internal keyboard circuitry memory in a register called "endpoint".
-* The host USB controller polls that "endpoint" every ~10ms, so it gets the keycode value stored on it.
-* This value goes to the USB SIE (Serial Interface Engine) sent at a maximum speed of 1.5 Mb/s (USB 2.0).
-* This serial signal is then decoded at the computer's host USB controller, and interpreted by the computer's Human Interface Device (HID) universal keyboard device driver.
-* The value of the key is then passed into the operating system's hardware abstraction layer.
+
+- The keycode generated is stored by internal keyboard circuitry memory in a register called "endpoint".
+- The host USB controller polls that "endpoint" every ~10ms, so it gets the keycode value stored on it.
+- This value goes to the USB SIE (Serial Interface Engine) sent at a maximum speed of 1.5 Mb/s (USB 2.0).
+- This serial signal is then decoded at the computer's host USB controller, and interpreted by the computer's Human Interface Device (HID) universal keyboard device driver.
+- The value of the key is then passed into the operating system's hardware abstraction layer.
 
 In the case of touch screen keyboards:
-* When the user puts their finger on a modern capacitive touch screen, a tiny amount of current gets transferred to the finger. This completes the circuit through the electrostatic field of the conductive layer and creates a voltage drop at that point on the screen. The screen controller then raises an interrupt reporting the coordinate of the 'click'.
-* Then the mobile OS notifies the current focused application of a click event in one of its GUI elements (which now is the virtual keyboard application buttons).
-* The virtual keyboard can now raise a software interrupt for sending a 'key pressed' message back to the OS.
-* This interrupt notifies the current focused application of a 'key pressed' event.
+
+- When the user puts their finger on a modern capacitive touch screen, a tiny amount of current gets transferred to the finger. This completes the circuit through the electrostatic field of the conductive layer and creates a voltage drop at that point on the screen. The screen controller then raises an interrupt reporting the coordinate of the 'click'.
+- Then the mobile OS notifies the current focused application of a click event in one of its GUI elements (which now is the virtual keyboard application buttons).
+- The virtual keyboard can now raise a software interrupt for sending a 'key pressed' message back to the OS.
+- This interrupt notifies the current focused application of a 'key pressed' event.
 
 ## Parse the URL
 
 The browser now has the following information contained in the URL (Uniform Resource Locator):
-* Protocol "http": Use 'Hyper Text Transfer Protocol'
-* Resource "/": Retrieve main (index) page
+
+- Protocol "http": Use 'Hyper Text Transfer Protocol'
+- Resource "/": Retrieve main (index) page
 
 When no protocol or valid domain name is given the browser proceeds to feed the text given in the address box to the browser's default web search engine.
 
 ## Check HSTS list (deprecated)
 
-* ~The browser checks its "preloaded HSTS (HTTP Strict Transport Security)" list. This is a list of websites that have requested to be contacted via HTTPS only.~
-* ~If the website is in the list, the browser sends its request via HTTPS instead of HTTP. Otherwise, the initial request is sent via HTTP.~
+- ~The browser checks its "preloaded HSTS (HTTP Strict Transport Security)" list. This is a list of websites that have requested to be contacted via HTTPS only.~
+- ~If the website is in the list, the browser sends its request via HTTPS instead of HTTP. Otherwise, the initial request is sent via HTTP.~
 
 Note: The website can still use the HSTS policy without being in the HSTS list. The first HTTP request to the website by a user will receive a response requesting that the user only send HTTPS requests. However, this single HTTP request could potentially leave the user vulnerable to a [downgrade attack](http://www.yourdictionary.com/downgrade-attack), which is why the HSTS list is included in modern web browsers.
 
 Modern browsers requests https first
 
-
 ## DNS lookup
 
 The browser tries to figure out the IP address for the entered domain. The DNS lookup proceeds as follows:
 
-* **Browser cache:** The browser caches DNS records for some time. Interestingly, the OS does not tell the browser the time-to-live for each DNS record, and so the browser caches them for a fixed duration (varies between browsers, 2 – 30 minutes).
-* **OS cache:** If the browser cache does not contain the desired record, the browser makes a system call (gethostbyname in Windows). The OS has its own cache.
-* **Router cache:** The request continues on to your router, which typically has its own DNS cache.
-* **ISP DNS cache:** The next place checked is the cache ISP’s DNS server. With a cache, naturally.
-* **Recursive search:** Your ISP’s DNS server begins a recursive search, from the root nameserver, through the .com top-level nameserver, to Google’s nameserver. Normally, the DNS server will have names of the .com nameservers in cache, and so a hit to the root nameserver will not be necessary.
+- **Browser cache:** The browser caches DNS records for some time. Interestingly, the OS does not tell the browser the time-to-live for each DNS record, and so the browser caches them for a fixed duration (varies between browsers, 2 – 30 minutes).
+- **OS cache:** If the browser cache does not contain the desired record, the browser makes a system call (gethostbyname in Windows). The OS has its own cache.
+- **Router cache:** The request continues on to your router, which typically has its own DNS cache.
+- **ISP DNS cache:** The next place checked is the cache ISP’s DNS server. With a cache, naturally.
+- **Recursive search:** Your ISP’s DNS server begins a recursive search, from the root nameserver, through the .com top-level nameserver, to Google’s nameserver. Normally, the DNS server will have names of the .com nameservers in cache, and so a hit to the root nameserver will not be necessary.
 
 Here is a diagram of what a recursive DNS search looks like:
 
@@ -88,23 +91,23 @@ Here is a diagram of what a recursive DNS search looks like:
 
 One worrying thing about DNS is that the entire domain like wikipedia.org or facebook.com seems to map to a single IP address. Fortunately, there are ways of mitigating the bottleneck:
 
-* **Round-robin DNS** is a solution where the DNS lookup returns multiple IP addresses, rather than just one. For example, facebook.com actually maps to four IP addresses.
-* **Load-balancer** is the piece of hardware that listens on a particular IP address and forwards the requests to other servers. Major sites will typically use expensive high-performance load balancers.
-* **Geographic DNS** improves scalability by mapping a domain name to different IP addresses, depending on the client’s geographic location. This is great for hosting static content so that different servers don’t have to update shared state.
-* **Anycast** is a routing technique where a single IP address maps to multiple physical servers. Unfortunately, anycast does not fit well with TCP and is rarely used in that scenario.
+- **Round-robin DNS** is a solution where the DNS lookup returns multiple IP addresses, rather than just one. For example, facebook.com actually maps to four IP addresses.
+- **Load-balancer** is the piece of hardware that listens on a particular IP address and forwards the requests to other servers. Major sites will typically use expensive high-performance load balancers.
+- **Geographic DNS** improves scalability by mapping a domain name to different IP addresses, depending on the client’s geographic location. This is great for hosting static content so that different servers don’t have to update shared state.
+- **Anycast** is a routing technique where a single IP address maps to multiple physical servers. Unfortunately, anycast does not fit well with TCP and is rarely used in that scenario.
 
 Most of the DNS servers themselves use anycast to achieve high availability and low latency of the DNS lookups. Users of an anycast service (DNS is an excellent example) will always connect to the 'closest' (from a routing protocol perspective) DNS server. This reduces latency, as well as providing a level of load-balancing (assuming that your consumers are evenly distributed around your network).
 
 ## Opening of a socket + TLS handshake
 
-* Once the browser receives the IP address of the destination server, it takes that and the given port number from the URL (the HTTP protocol defaults to port 80, and HTTPS to port 443), and makes a call to the system library function named socket and requests a [TCP](http://www.webopedia.com/TERM/T/TCP.html) [socket](http://www.webopedia.com/TERM/S/socket.html) stream.
-* The client computer sends a ClientHello message to the server with its TLS version, list of cipher algorithms and compression methods available.
-* The server replies with a ServerHello message to the client with the TLS version, selected cipher, selected compression methods and the server's public certificate signed by a CA (Certificate Authority). The certificate contains a public key that will be used by the client to encrypt the rest of the handshake until a symmetric key can be agreed upon.
-* The client verifies the server digital certificate against its list of trusted CAs. If trust can be established based on the CA, the client generates a string of pseudo-random bytes and encrypts this with the server's public key. These random bytes can be used to determine the symmetric key.
-* The server decrypts the random bytes using its private key and uses these bytes to generate its own copy of the symmetric master key.
-* The client sends a Finished message to the server, encrypting a hash of the transmission up to this point with the symmetric key.
-* The server generates its own hash, and then decrypts the client-sent hash to verify that it matches. If it does, it sends its own Finished message to the client, also encrypted with the symmetric key.
-* From now on the TLS session transmits the application (HTTP) data encrypted with the agreed symmetric key.
+- Once the browser receives the IP address of the destination server, it takes that and the given port number from the URL (the HTTP protocol defaults to port 80, and HTTPS to port 443), and makes a call to the system library function named socket and requests a [TCP](http://www.webopedia.com/TERM/T/TCP.html) [socket](http://www.webopedia.com/TERM/S/socket.html) stream.
+- The client computer sends a ClientHello message to the server with its TLS version, list of cipher algorithms and compression methods available.
+- The server replies with a ServerHello message to the client with the TLS version, selected cipher, selected compression methods and the server's public certificate signed by a CA (Certificate Authority). The certificate contains a public key that will be used by the client to encrypt the rest of the handshake until a symmetric key can be agreed upon.
+- The client verifies the server digital certificate against its list of trusted CAs. If trust can be established based on the CA, the client generates a string of pseudo-random bytes and encrypts this with the server's public key. These random bytes can be used to determine the symmetric key.
+- The server decrypts the random bytes using its private key and uses these bytes to generate its own copy of the symmetric master key.
+- The client sends a Finished message to the server, encrypting a hash of the transmission up to this point with the symmetric key.
+- The server generates its own hash, and then decrypts the client-sent hash to verify that it matches. If it does, it sends its own Finished message to the client, also encrypted with the symmetric key.
+- From now on the TLS session transmits the application (HTTP) data encrypted with the agreed symmetric key.
 
 ## HTTP protocol
 
@@ -139,40 +142,43 @@ After parsing the HTML, the web browser (and server) repeats this process for ev
 If the HTML referenced a resource on a different domain than www.google.com, the web browser goes back to the steps involved in resolving the other domain, and follows all steps up to this point for that domain. The Host header in the request will be set to the appropriate server name instead of google.com.
 
 **Gotcha:**
-* The trailing slash in the URL “[http://facebook.com/](http://facebook.com/)” is important. In this case, the browser can safely add the slash. For URLs of the form http://example.com/folderOrFile, the browser cannot automatically add a slash, because it is not clear whether folderOrFile is a folder or a file. In such cases, the browser will visit the URL without the slash, and the server will respond with a redirect, resulting in an unnecessary roundtrip.
-* The server might respond with a 301 Moved Permanently response to tell the browser to go to “[http://www.google.com/](http://www.google.com/)” instead of “[http://google.com/](http://google.com/)”. There are interesting reasons why the server insists on the redirect instead of immediately responding with the web page that the user wants to see.
-One reason has to do with search engine rankings. See, if there are two URLs for the same page, say http://www.vasanth.com/ and http://vasanth.com/, search engines may consider them to be two different sites, each with fewer incoming links and thus a lower ranking. Search engines understand permanent redirects (301), and will combine the incoming links from both sources into a single ranking.
-Also, multiple URLs for the same content are not cache-friendly. When a piece of content has multiple names, it will potentially appear multiple times in caches.
+
+- The trailing slash in the URL “[http://facebook.com/](http://facebook.com/)” is important. In this case, the browser can safely add the slash. For URLs of the form http://example.com/folderOrFile, the browser cannot automatically add a slash, because it is not clear whether folderOrFile is a folder or a file. In such cases, the browser will visit the URL without the slash, and the server will respond with a redirect, resulting in an unnecessary roundtrip.
+- The server might respond with a 301 Moved Permanently response to tell the browser to go to “[http://www.google.com/](http://www.google.com/)” instead of “[http://google.com/](http://google.com/)”. There are interesting reasons why the server insists on the redirect instead of immediately responding with the web page that the user wants to see.
+  One reason has to do with search engine rankings. See, if there are two URLs for the same page, say http://www.vasanth.com/ and http://vasanth.com/, search engines may consider them to be two different sites, each with fewer incoming links and thus a lower ranking. Search engines understand permanent redirects (301), and will combine the incoming links from both sources into a single ranking.
+  Also, multiple URLs for the same content are not cache-friendly. When a piece of content has multiple names, it will potentially appear multiple times in caches.
 
 **Note:**
 HTTP response starts with the returned status code from the server. Following is a very brief summary of what a status code denotes:
-  * 1xx indicates an informational message only
-  * 2xx indicates success of some kind
-  * 3xx redirects the client to another URL
-  * 4xx indicates an error on the client's part
-  * 5xx indicates an error on the server's part
+
+- 1xx indicates an informational message only
+- 2xx indicates success of some kind
+- 3xx redirects the client to another URL
+- 4xx indicates an error on the client's part
+- 5xx indicates an error on the server's part
 
 ## HTTP Server Request Handle
 
 The HTTPD (HTTP Daemon) server is the one handling the requests/responses on the server side. The most common HTTPD servers are Apache or nginx for Linux and IIS for Windows.
 
-* The HTTPD (HTTP Daemon) receives the request.
+- The HTTPD (HTTP Daemon) receives the request.
 
-* The server breaks down the request to the following parameters:
-    * HTTP Request Method (either GET, POST, HEAD, PUT and DELETE). In the case of a URL entered directly into the address bar, this will be GET.
-    * Domain, in this case - google.com.
-    * Requested path/page, in this case - / (as no specific path/page was requested, / is the default path).
-    * The server verifies that there is a Virtual Host configured on the server that corresponds with google.com.
+- The server breaks down the request to the following parameters:
 
-* The server verifies that google.com can accept GET requests.
+  - HTTP Request Method (either GET, POST, HEAD, PUT and DELETE). In the case of a URL entered directly into the address bar, this will be GET.
+  - Domain, in this case - google.com.
+  - Requested path/page, in this case - / (as no specific path/page was requested, / is the default path).
+  - The server verifies that there is a Virtual Host configured on the server that corresponds with google.com.
 
-* The server verifies that the client is allowed to use this method (by IP, authentication, etc.).
+- The server verifies that google.com can accept GET requests.
 
-* If the server has a rewrite module installed (like mod_rewrite for Apache or URL Rewrite for IIS), it tries to match the request against one of the configured rules. If a matching rule is found, the server uses that rule to rewrite the request.
+- The server verifies that the client is allowed to use this method (by IP, authentication, etc.).
 
-* The server goes to pull the content that corresponds with the request, in our case it will fall back to the index file, as "/" is the main file (some cases can override this, but this is the most common method).
+- If the server has a rewrite module installed (like mod_rewrite for Apache or URL Rewrite for IIS), it tries to match the request against one of the configured rules. If a matching rule is found, the server uses that rule to rewrite the request.
 
-* The server parses the file according to the request handler. A request handler is a program (in ASP.NET, PHP, Ruby, …) that reads the request and generates the HTML for the response. If Google is running on PHP, the server uses PHP to interpret the index file, and streams the output to the client.
+- The server goes to pull the content that corresponds with the request, in our case it will fall back to the index file, as "/" is the main file (some cases can override this, but this is the most common method).
+
+- The server parses the file according to the request handler. A request handler is a program (in ASP.NET, PHP, Ruby, …) that reads the request and generates the HTML for the response. If Google is running on PHP, the server uses PHP to interpret the index file, and streams the output to the client.
 
 Note: One interesting difficulty that every dynamic website faces is how to store data. Smaller sites will often have a single SQL database to store their data, but sites that store a large amount of data and/or have many visitors have to find a way to split the database across multiple machines. Solutions include sharding (splitting up a table across multiple databases based on the primary key), replication, and usage of simplified databases with weakened consistency semantics.
 
@@ -202,14 +208,14 @@ The entire response is 36 kB, the bulk of them in the byte blob at the end that 
 The **Content-Encoding** header tells the browser that the response body is compressed using the gzip algorithm. After decompressing the blob, you’ll see the HTML you’d expect:
 
 ```html
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-      lang="en" id="google" class=" no_js">
-<head>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<meta http-equiv="Content-language" content="en" />
-...
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" id="google" class=" no_js">
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-language" content="en" />
+    ...
+  </head>
+</html>
 ```
 
 Notice the header that sets Content-Type to text/html. The header instructs the browser to render the response content as HTML, instead of say downloading it as a file. The browser will use the header to decide how to interpret the response, but will consider other factors as well, such as the extension of the URL.
@@ -217,8 +223,9 @@ Notice the header that sets Content-Type to text/html. The header instructs the 
 ## Behind the scenes of the Browser
 
 Once the server supplies the resources (HTML, CSS, JS, images, etc.) to the browser it undergoes the below process:
-* Parsing - HTML, CSS, JS
-* Rendering - Construct DOM Tree → Render Tree → Layout of Render Tree → Painting the render tree
+
+- Parsing - HTML, CSS, JS
+- Rendering - Construct DOM Tree → Render Tree → Layout of Render Tree → Painting the render tree
 
 ## The browser's high level structure
 
@@ -268,14 +275,14 @@ If you open up Chrome DevTools and record a timeline while the page is loaded, y
 
 A rendering engine is a software component that takes marked up content (such as HTML, XML, image files, etc.) and formatting information (such as CSS, XSL, etc.) and displays the formatted content on the screen.
 
-|Browser           |Engine                       |
-|----------------- |:---------------------------:|
-|Chrome            | Blink (a fork of WebKit)    |
-|Firefox           | Gecko                       |
-|Safari            | Webkit                      |
-|Opera             | Blink (Presto if < v15)     |
-|Internet Explorer | Trident                     |
-|Edge              | Blink (EdgeHTML if < v79)   |
+| Browser           |          Engine           |
+| ----------------- | :-----------------------: |
+| Chrome            | Blink (a fork of WebKit)  |
+| Firefox           |           Gecko           |
+| Safari            |          Webkit           |
+| Opera             |  Blink (Presto if < v15)  |
+| Internet Explorer |          Trident          |
+| Edge              | Blink (EdgeHTML if < v79) |
 
 WebKit is an open source rendering engine which started as an engine for the Linux platform and was modified by Apple to support Mac and Windows.
 
@@ -354,10 +361,8 @@ The DOM has an almost one-to-one relation to the markup. For example:
 ```html
 <html>
   <body>
-    <p>
-      Hello World
-    </p>
-    <div> <img src="example.png"/></div>
+    <p>Hello World</p>
+    <div><img src="example.png" /></div>
   </body>
 </html>
 ```
@@ -407,17 +412,17 @@ CSS Selectors are matched by browser engines from right to left. Keep in mind th
 
 A selector's specificity is calculated as follows:
 
-* Count 1 if the declaration it is from is a 'style' attribute rather than a rule with a selector, 0 otherwise (= a)
-* Count the number of ID selectors in the selector (= b)
-* Count the number of class selectors, attributes selectors, and pseudo-classes in the selector (= c)
-* Count the number of element names and pseudo-elements in the selector (= d)
-* Ignore the universal selector
+- Count 1 if the declaration it is from is a 'style' attribute rather than a rule with a selector, 0 otherwise (= a)
+- Count the number of ID selectors in the selector (= b)
+- Count the number of class selectors, attributes selectors, and pseudo-classes in the selector (= c)
+- Count the number of element names and pseudo-elements in the selector (= d)
+- Ignore the universal selector
 
 Concatenating the three numbers a-b-c-d (in a number system with a large base) gives the specificity. The number base you need to use is defined by the highest count you have in one of a, b, c and d.
 
 Examples:
 
-``` txt
+```txt
 *               /* a=0 b=0 c=0 -> specificity =   0 */
 LI              /* a=0 b=0 c=1 -> specificity =   1 */
 UL LI           /* a=0 b=0 c=2 -> specificity =   2 */
@@ -449,8 +454,8 @@ The layout usually has the following pattern:
 
 - Parent renderer determines its own width.
 - Parent goes over children and:
-    - Place the child renderer (sets its x and y).
-    - Calls child layout if needed–they are dirty or we are in a global layout, or for some other reason–which calculates the child's height.
+  - Place the child renderer (sets its x and y).
+  - Calls child layout if needed–they are dirty or we are in a global layout, or for some other reason–which calculates the child's height.
 - Parent uses children's accumulative heights and the heights of margins and padding to set its own height–this will be used by the parent renderer's parent.
 - Sets its dirty bit to false.
 
@@ -466,9 +471,9 @@ Before repainting, WebKit saves the old rectangle as a bitmap. It then paints on
 
 There are three different positioning schemes:
 
-* **Normal:** the object is positioned according to its place in the document. This means its place in the render tree is like its place in the DOM tree and laid out according to its box type and dimensions
-* **Float:** the object is first laid out like normal flow, then moved as far left or right as possible
-* **Absolute:** the object is put in the render tree in a different place than in the DOM tree
+- **Normal:** the object is positioned according to its place in the document. This means its place in the render tree is like its place in the DOM tree and laid out according to its box type and dimensions
+- **Float:** the object is first laid out like normal flow, then moved as far left or right as possible
+- **Absolute:** the object is put in the render tree in a different place than in the DOM tree
 
 The positioning scheme is set by the "position" property and the "float" attribute.
 
@@ -491,7 +496,7 @@ The first website at CERN - and in the world - was dedicated to the World Wide W
 
 On 30 April 1993, CERN put the World Wide Web software in the public domain. CERN made the next release available with an open license, as a more sure way to maximize its dissemination. Through these actions, making the software required to run a web server freely available, along with a [basic browser](http://line-mode.cern.ch/) and a library of code, the web was allowed to flourish.
 
-*More reading:*
+_More reading:_
 
 [What really happens when you navigate to a URL](http://igoro.com/archive/what-really-happens-when-you-navigate-to-a-url/)
 
