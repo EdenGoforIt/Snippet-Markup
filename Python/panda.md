@@ -154,3 +154,63 @@ result = json.loads(obj) # deserialize to objects
 as_json = json.dumps(result) #serialize to json or string
 
 ```
+
+# SQLite
+
+```
+add_national_entry = """
+                            INSERT INTO national_populations
+                            (nation, population, year)
+                            VALUES (?, ?, ?)
+                        """
+
+for index, row in data.iterrows():
+    substitution_values = (row['nation'], row['population'], dt.date(row['year'], 1, 1))
+    cursor.execute(add_national_entry, substitution_values)
+
+#!!!!!! VERY IMPORTANT  !!!!!
+#nothing will happen without the line below
+connection.commit()
+
+=========================================
+
+cursor.executemany(
+      """INSERT INTO national_populations (nation, population, year)
+      VALUES (?, ?, ?)""",
+      [
+      ('China', 1382323332,  dt.date(2016, 1, 1)),
+      ('USA', 324118787,  dt.date(2016, 1, 1)),
+      ('Russia', 143439832,  dt.date(2016, 1, 1))
+      ] )
+
+connection.commit()
+
+===============================
+
+
+query = ("SELECT * FROM national_populations ")
+cursor.execute(query)
+
+for (entry, nation, population, year) in cursor:
+    print(nation, population, year)
+
+sql = ("CREATE INDEX ind_year ON national_populations (year);")
+cursor.execute(sql)
+
+
+# close it after saving those in the memory
+cursor.close()
+connection.close()
+
+
+# connecting to panda
+
+df_sql = pd.read_sql_query('SELECT * '
+                           'FROM national_populations '
+                           'WHERE population > 1000000 '
+                           'LIMIT 3', connection)
+df_sql
+
+
+
+```
