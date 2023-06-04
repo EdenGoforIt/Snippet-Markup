@@ -37,7 +37,7 @@ py -m pip install pandas
 ```
 conda activate myenv      # to set the folder
 
-cd /d d:
+cd /d D:\Massey\Year 1\Semester 2\Introduction Analyticis\Assignment 3
 
 jupyter-lab
 
