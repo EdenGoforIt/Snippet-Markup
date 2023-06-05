@@ -25,7 +25,6 @@
 > src/index.tsx holds the main render call from the React DOM.
 > public/robots.txt: Also known as the robots exclusion protocol or standard. You can declare here the pages or HTML that you want to hide from Google’s search results. Sample pages include the admin page because your users don’t need to know your app’s admin page.
 > Declaration files also called .d.ts files are prefixed with @types.The @types prefix is used to indicate that a given package has type definitions available in a separate package. But, nowadays libraries have types included
-> 
 
 ## Create React
 
@@ -59,3 +58,7 @@ this.state = {
 this.setState({name:'Andres'})
 
 ```
+
+# Props
+
+Props is the shorthand for Properties in React. They are read-only components which must be kept pure i.e. immutable. They are always passed down from the parent to the child components throughout the application. A child component can never send a prop back to the parent component.
