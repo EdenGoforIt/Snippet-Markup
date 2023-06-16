@@ -11,12 +11,17 @@
 - use `commands` and `plugins` to create a new command and extend or modify behaviors.
 
 - [index](#index)
+
   - [how to start](#how-to-start)
   - [User Actions](#user-actions)
   - [assertions](#assertions)
   - [installation](#installation)
   - [selector](#selector)
   - [commands](#commands)
+
+  ## best practices
+
+  https://github.com/cypress-io/cypress-example-recipes/blob/master/examples/blogs__e2e-api-testing/cypress/e2e/example_spec.cy.js
 
 ## how to start
 
