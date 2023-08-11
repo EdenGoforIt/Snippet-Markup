@@ -1,6 +1,7 @@
 # index
 
 - [Microsoft](https://learn.microsoft.com/en-us/dotnet/standard/threading/threads-and-threading)
+- [perfect example of concurrncy and parallelism](https://freecontent.manning.com/concurrency-vs-parallelism/#:~:text=Concurrency%20is%20about%20multiple%20tasks,resources%20like%20multi%2Dcore%20processor.)
 
 - multi programming is the logically concurrent execution of the multiple programs
 - whereas multithreading provides concurrency within the context of the a single process and multiprogramming provides concurrency between processes
