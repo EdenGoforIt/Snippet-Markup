@@ -32,8 +32,15 @@ The Microsoft identity platform is the authorization server. Also called an iden
 
 The client uses a **refresh token**, or RT, to request new access and ID tokens from the authorization server. Your code should treat refresh tokens and their string content as sensitive data because they're intended for use only by authorization server.
 
-## app registration
+### app registration
 
 **application ID** and **client ID**, this value is assigned to your app by the identity platform
 
 **Redirect URL** The authorization server uses the redirect url to direct reßsource owner's user-agent (web browser, mobile app) to another destination after completing their interaction
+
+### End point
+Token or Authorization end points are provided when the app is registered. This might provide you to launch SSO?
+
+
+### MSAL
+The Microsoft Authentication Library (MSAL) enables developers to acquire security tokens from the Microsoft identity platform to authenticate users and access secured web APIs.
