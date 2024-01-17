@@ -3,6 +3,7 @@
 - [Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html)
 - [Example](https://github.dev/jasontaylordev/CleanArchitecture)
 - [Example with DDD](https://www.youtube.com/watch?v=5_un3PUER8U&ab_channel=AmichaiMantinband)
+- [Udemy](https://github.com/trevoirwilliams/HR.LeaveManagement.CleanArchitecture-dotnet5)
 
 ## summary
 
