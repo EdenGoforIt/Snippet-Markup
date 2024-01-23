@@ -10,3 +10,6 @@
 - Association is a relationshiup between two classes where one class use another
 
 > To sum it up association is a very generic term used to represent when a class uses the functionalities provided by another class. We say it's composition if one parent class object owns another child class object and that child class object cannot meaningfully exist without the parent class object. If it can then it is called Aggregation.
+
+> The relationship between the Owner and Dog is association because the owner is clearly not part of the Dog, or vice versa, so it's not aggregation. The dog needs a walk from the Onwer
+- Composition represetsn theinteractions between various objects
