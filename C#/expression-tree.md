@@ -1,8 +1,6 @@
-# index
+# Introduction
 
 - Build Tree, compile to Func -> pass it to the Where
-- 
-
 - LINQ uses lambda expressions to build an expression tree, which it can then use to build a provider-specific query
 
 ## Expression

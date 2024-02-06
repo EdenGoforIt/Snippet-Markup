@@ -1,6 +1,4 @@
-# index
-
-## command to create a new Solution + console
+## Command to create a new Solution + Console
 
 - create a folder called `Delegates`
 - go to the folder

@@ -58,3 +58,5 @@ Do we have to use unit of work and repository (design patterns)?
 - dbcontext is actually unit of work
 - DbSet acts as a repository
 - from efcore no need to implement it. Ef core has features for unit testing without repoistories
+
+## Clean Architecture - Uncle Bob
