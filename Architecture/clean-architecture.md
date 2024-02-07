@@ -60,3 +60,6 @@ Do we have to use unit of work and repository (design patterns)?
 - from efcore no need to implement it. Ef core has features for unit testing without repoistories
 
 ## Clean Architecture - Uncle Bob
+- Architecutre is the shape of the home
+- The goal of the architecture is to minimize the human resources required to build and maintain the requried system.
+- Making messies is always slower than staying clean 
