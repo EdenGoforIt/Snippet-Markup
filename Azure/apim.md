@@ -11,3 +11,8 @@
 - Cache the response
 - Throttling
 - Logging 
+
+
+## Scenario
+
+- APIM ask for SSL certificate from Azure KeyVault using Managed Service Identity (MSI)
