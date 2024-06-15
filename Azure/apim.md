@@ -22,3 +22,7 @@
 - more data to cache
 - no dependencies to api management update thus not loosing data
 - fine tune
+
+## Product
+
+- Logical collection of API that can be managed, distributed and consumged together.
