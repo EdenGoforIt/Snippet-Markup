@@ -49,3 +49,12 @@ optimal + uninformed = uniform-cost
 ### uniform cost search
 
 - similar to best search search but uniform cost search uses the total cost rather than the state cost.
+- path length only
+
+### A(\*) (Star) Algorithm
+
+f(bs) = g(s-> b) + heuristic value from (b-g);
+path length + heuristics
+UC with the admissible estimate -> a\*
+
+- no bias towards the goal (it only use path length and heuristics without ordering of the Q)

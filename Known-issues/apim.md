@@ -9,3 +9,6 @@ make sure that validate-azure-ad-token comes first and then managed identity oth
 apim will validate managed identity.
 
 use validate-jwt for debugging because this policy can give you what value is expected in the app setting error
+
+
+
