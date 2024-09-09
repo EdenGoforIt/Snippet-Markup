@@ -50,6 +50,7 @@ optimal + uninformed = uniform-cost
 
 - similar to best search search but uniform cost search uses the total cost rather than the state cost.
 - path length only
+- it's not efficient with the expanded list but not A starß
 
 ### A(\*) (Star) Algorithm
 
@@ -58,3 +59,7 @@ path length + heuristics
 UC with the admissible estimate -> a\*
 
 - no bias towards the goal (it only use path length and heuristics without ordering of the Q)
+
+### Life long planning A \*
+
+- an incremental version of a\*

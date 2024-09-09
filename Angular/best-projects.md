@@ -8,6 +8,7 @@
 ## best practices
 
 - (best practice)[https://github.com/andredesousa/angular-best-practices]
+- Agnualar architect [https://github.com/rainerhahnekamp/ngrx-best-practices/tree/02-modularity]
 
 ## ngrx
 
