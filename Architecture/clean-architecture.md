@@ -22,7 +22,6 @@ Presentation / Infrastructure
 - Application - business logic and types
 - Infrastructure - all external concerns
 - presentation / infrastucture only depends on Application
-- presentation / infrastructure can be replaced easily
 
 ### Domain Layer
 
