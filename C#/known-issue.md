@@ -11,3 +11,5 @@ app.MapGet("/", () => Results.Ok());
 As my requirement was to keep the server always on. But if the requirement is flexible then the option Always On can be turned off.
 
 ```
+
+It could be to do with azure front door
