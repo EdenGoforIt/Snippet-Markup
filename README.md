@@ -1,5 +1,5 @@
-#
+# Snpiipet-Markup Language Specification
 
-## random images
+## Overview
+Snpiipet-Markup is a lightweight markup language designed for organizing knowledge related to **architecture** and **software development**. It enables structured documentation with sections, tags, and code snippets.
 
-[random dog images](https://random.dog./woof.json)
