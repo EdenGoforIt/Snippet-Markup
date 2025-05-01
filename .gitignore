@@ -1,1 +1,3 @@
 node_modules
+__azurite_db_table__.json
+AzuriteConfig
