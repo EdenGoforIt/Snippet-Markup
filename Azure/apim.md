@@ -80,6 +80,9 @@ context.Request.Url.Query.GetValueOrDefault("parameter-name", "").Equals("expect
 **Get policy variable** *(assuming type string)*
 ```c#
 context.Variables.GetValueOrDefault<string>("variable-name","optional-default-value")
+<set-header name="api-business-govt-nz-Request-Id" exists-action="override">
+    <value>@((string)context.Variables["requestId"])</value>
+</set-header>
 ```
 **Check policy variable existence**
 ```c#
