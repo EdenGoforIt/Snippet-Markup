@@ -83,6 +83,9 @@ context.Variables.GetValueOrDefault<string>("variable-name","optional-default-va
 <set-header name="api-business-govt-nz-Request-Id" exists-action="override">
     <value>@((string)context.Variables["requestId"])</value>
 </set-header>
+
+# When the variable is a json
+<when condition="@(JObject.Parse((string)context.Variables["payload"])["pushEndpoint"] == null)">
 ```
 **Check policy variable existence**
 ```c#
