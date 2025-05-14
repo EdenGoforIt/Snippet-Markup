@@ -154,3 +154,32 @@ context.Deployment.Certificates.Any(c => c.Value.Thumbprint == context.Request.C
 ```C#
  <mock-response status-code="200" content-type="application/json" />
 ```
+
+
+```C#
+         <set-variable name="payload" value="@((string)context.Request.Body.As<string>(preserveContent:true) ?? string.Empty)" />
+
+    <choose>
+<when condition="@{
+                    var json = JObject.Parse((string)context.Variables["payload"]);
+                    var hasWildcard = !string.IsNullOrWhiteSpace(json["wildcard"]?.ToString());
+                    var hasList = json["someList"] != null && json["someList"].Any();
+                    return !(hasWildcard || hasList);
+                }">
+                <return-response>
+                    <set-status code="400" />
+                    <set-header name="Content-Type" exists-action="override">
+                        <value>application/json</value>
+                    </set-header>
+                    <set-body>@{
+                            return new JObject(
+                                new JProperty("title", "Bad Request"),
+                                new JProperty("status", 400),
+                                new JProperty("detail", "Either 'wildcard' must be provided or the some list must contain at least one item.")
+                            ).ToString();
+                        }</set-body>
+                </return-response>
+            </when>
+        </choose>
+
+```
