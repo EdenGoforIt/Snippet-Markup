@@ -148,3 +148,9 @@ context.Request.Certificate.Thumbprint == "EXPECTED-THUMBPRINT-IN-UPPER-CASE"
 ```c#
 context.Deployment.Certificates.Any(c => c.Value.Thumbprint == context.Request.Certificate.Thumbprint) == true
 ```
+
+
+**Userful expression**
+```C#
+ <mock-response status-code="200" content-type="application/json" />
+```
