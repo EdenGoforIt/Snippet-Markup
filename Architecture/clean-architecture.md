@@ -5,6 +5,13 @@
 - [Example with DDD](https://www.youtube.com/watch?v=5_un3PUER8U&ab_channel=AmichaiMantinband)
 - [Udemy](https://github.com/trevoirwilliams/HR.LeaveManagement.CleanArchitecture-dotnet5)
 
+## Github Source
+
+- [source 1](https://github.com/jasontaylordev/CleanArchitecture/blob/main/src/Application/TodoItems/Commands/UpdateTodoItem/UpdateTodoItem.cs)
+- [source 2](https://github.com/felixsjoberg/Bank.CleanArchitecture.WebApi/blob/main/BankApplication.Application/Common/Errors/InvalidTransferAmount.cs)
+- [source 3](https://github.com/TuralSuleymani/the-real-DDD-CQRS-CleanArchitecture/blob/main/src/VOEConsulting.Flame.BasketContext.Application/Baskets/Commands/CreateBasket/CreateBasketCommandHandler.cs)
+- Check email for downloading github zip files
+
 ## summary
 
 - it feels like this architecture is an extension of what he has collated such as SOLID principles
