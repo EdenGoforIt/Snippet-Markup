@@ -13,3 +13,5 @@ As my requirement was to keep the server always on. But if the requirement is fl
 ```
 
 It could be to do with azure front door
+
+- Go to Front door -> origin group -> three dot -> remove health probe
