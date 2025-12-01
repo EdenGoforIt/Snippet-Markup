@@ -1,4 +1,4 @@
-The pseudocode provided in the image is for the **D\* Lite** algorithm, which is an efficient path-planning algorithm used in dynamic environments, such as robotics, where the map or environment can change over time. The goal of D\* Lite is to compute the shortest path from a start point to a goal point, and it can quickly replan the path when changes in the environment are detected.
+.The pseudocode provided in the image is for the **D\* Lite** algorithm, which is an efficient path-planning algorithm used in dynamic environments, such as robotics, where the map or environment can change over time. The goal of D\* Lite is to compute the shortest path from a start point to a goal point, and it can quickly replan the path when changes in the environment are detected.
 
 ### Breakdown of the Pseudocode:
 
