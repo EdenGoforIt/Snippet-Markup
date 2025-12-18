@@ -17,3 +17,18 @@ The error message typically appears as:
 
 **Solution**
 Add Agent pool that can access kudu url. 
+
+# Connection to Cosmos DB (Known Issue)
+
+## Managed Identity vs Connection String
+
+- **Local development / emulator**  
+  Use the full **connection string** with `AccountEndpoint` + `AccountKey`.
+
+- **Azure Functions with Managed Identity**  
+  You must **only use the account endpoint (account name)** — do not include the key.  
+  Example:
+  ```csharp
+  var endpoint = "https://<your-account>.documents.azure.com:443/";
+  var credential = new DefaultAzureCredential();
+  var client = new CosmosClient(endpoint, credential);
