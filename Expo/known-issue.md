@@ -44,3 +44,5 @@ module.exports = function (api) {
 * **Action:** Remove `metro.config.js`if not used
 * **Note:** Ensure it is moved to the **project root** directory (outside of `/src`).
 * **Node Version** Make sure that you use the right Node version
+
+**Lastly move the folder into c: directly and create a shortcut in the desktop**
