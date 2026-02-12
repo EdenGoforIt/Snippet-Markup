@@ -183,3 +183,32 @@ context.Deployment.Certificates.Any(c => c.Value.Thumbprint == context.Request.C
         </choose>
 
 ```
+```C#
+ <!-- 
+        <choose>
+            <when condition="@(context.Response.StatusCode >= 400)">
+                <return-response>
+                    <set-status code="@((int)context.Response.StatusCode)" reason="@((string)context.Response.StatusReason)" />
+                    <set-header name="Content-Type" exists-action="override">
+                        <value>application/json</value>
+                    </set-header>
+                    <set-body>@{
+                    var obj =
+                        new JObject(
+                            new JProperty("statusCode", context.Response.StatusCode),
+                            new JProperty("message", context.Response.StatusReason)
+                        );
+
+                    return obj.ToString();
+                }</set-body>
+                </return-response>
+            </when>
+            <otherwise>
+                <set-status code="200" reason="OK" />
+            </otherwise>
+        </choose> -->
+        <!-- Set Response Headers for SOAP 
+        <set-header name="Content-Type" exists-action="override">
+            <value>application/soap+xml; charset=utf-8</value>
+        </set-header> -->
+```
