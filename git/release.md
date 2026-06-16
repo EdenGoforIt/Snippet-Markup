@@ -24,6 +24,21 @@ We will utilize the following long-lived branches:
 - **`develop`:** The integration branch for all new features. Developers create feature branches off `develop` and merge them back into `develop`.
 - **`release-*`:** Temporary branches created from `develop` when a new release cycle begins. These branches are used for final stabilization and preparation of a specific release. The naming convention should be `release-X.Y.Z` (e.g., `release-1.0.0`, `release-1.1.0`).
 
+## Merge Strategy Matrix
+
+Use the following table to choose the merge strategy when moving changes between branches:
+
+| Source Branch | Target Branch | Recommended Strategy | Example Commands | Reason |
+| --- | --- | --- | --- | --- |
+| `feature/*` | `develop` | Squash merge | `git checkout develop`<br>`git merge --squash feature/my-feature` | Keeps `develop` history clean while preserving the feature as one logical change. |
+| `develop` | `release-X.Y.Z` | Create branch from `develop` | `git checkout develop`<br>`git checkout -b release-X.Y.Z` | Starts release stabilization from the current integrated development state. |
+| `release-X.Y.Z` | `main` | No-fast-forward merge | `git checkout main`<br>`git merge --no-ff release-X.Y.Z` | Creates a visible release merge commit and keeps release history traceable. |
+| `release-X.Y.Z` | `develop` | No-fast-forward merge | `git checkout develop`<br>`git merge --no-ff release-X.Y.Z` | Brings release fixes and version updates back into future development. |
+| `hotfix-X.Y.Z.A` | `main` | No-fast-forward merge | `git checkout main`<br>`git merge --no-ff hotfix-X.Y.Z.A` | Records the production hotfix as a distinct release event. |
+| `hotfix-X.Y.Z.A` | `develop` | No-fast-forward merge | `git checkout develop`<br>`git merge --no-ff hotfix-X.Y.Z.A` | Ensures the production fix is included in upcoming releases. |
+| `main` | `develop` | Merge only when needed | `git checkout develop`<br>`git merge --no-ff main` | Use when production-only changes, tags, or emergency fixes need to be synchronized. |
+| `develop` | `feature/*` | Rebase or merge from `develop` | `git checkout feature/my-feature`<br>`git rebase develop` | Keeps feature branches current before opening or updating a pull request. |
+
 ## Release Workflow
 
 The following steps outline the process for preparing and releasing a new version:
