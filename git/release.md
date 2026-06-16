@@ -33,10 +33,8 @@ Use the following table to choose the merge strategy when moving changes between
 | `feature/*` | `develop` | Squash merge | `git checkout develop`<br>`git merge --squash feature/my-feature` | Keeps `develop` history clean while preserving the feature as one logical change. |
 | `develop` | `release-X.Y.Z` | Create branch from `develop` | `git checkout develop`<br>`git checkout -b release-X.Y.Z` | Starts release stabilization from the current integrated development state. |
 | `release-X.Y.Z` | `main` | No-fast-forward merge | `git checkout main`<br>`git merge --no-ff release-X.Y.Z` | Creates a visible release merge commit and keeps release history traceable. |
-| `release-X.Y.Z` | `develop` | No-fast-forward merge | `git checkout develop`<br>`git merge --no-ff release-X.Y.Z` | Brings release fixes and version updates back into future development. |
 | `hotfix-X.Y.Z.A` | `main` | No-fast-forward merge | `git checkout main`<br>`git merge --no-ff hotfix-X.Y.Z.A` | Records the production hotfix as a distinct release event. |
-| `hotfix-X.Y.Z.A` | `develop` | No-fast-forward merge | `git checkout develop`<br>`git merge --no-ff hotfix-X.Y.Z.A` | Ensures the production fix is included in upcoming releases. |
-| `main` | `develop` | Merge only when needed | `git checkout develop`<br>`git merge --no-ff main` | Use when production-only changes, tags, or emergency fixes need to be synchronized. |
+| `main` | `develop` | Required after `main` changes | `git checkout develop`<br>`git merge --no-ff main` | Always sync `main` into `develop` after a release or hotfix is merged into `main`, so future development starts from the latest released code. |
 | `develop` | `feature/*` | Rebase or merge from `develop` | `git checkout feature/my-feature`<br>`git rebase develop` | Keeps feature branches current before opening or updating a pull request. |
 
 ## Release Workflow
@@ -88,15 +86,15 @@ The following steps outline the process for preparing and releasing a new versio
     - `--no-ff`: This option ensures that a merge commit is always created, providing a clear record of the release merge in the `main` branch history.
     - `git tag`: A tag with the final release version number (following SemVer) is created on the `main` branch to mark the exact point of the release.
 
-5.  **Merge into `develop`:** The changes made in the `release-X.Y.Z` branch (including bug fixes, version updates, and potentially completed features if no alpha/beta stages were used) should also be merged back into the `develop` branch to ensure that these changes are included in future development.
+5.  **Sync `main` into `develop`:** After the release branch has been merged into `main`, merge `main` back into `develop` to ensure released changes, bug fixes, tags, and version updates are included in future development.
 
     ```bash
     git checkout develop
-    git merge --no-ff release-X.Y.Z
+    git merge --no-ff main
     git push origin develop
     ```
 
-6.  **Cleanup:** Once the release is complete and merged into both `main` and `develop`, the `release-X.Y.Z` branch can be deleted.
+6.  **Cleanup:** Once the release is complete and `main` has been synchronized into `develop`, the `release-X.Y.Z` branch can be deleted.
     ```bash
     git branch -d release-X.Y.Z
     git push origin --delete release-X.Y.Z
@@ -127,11 +125,11 @@ Critical bugs found in the production release (on the `main` branch) need to be 
     git push origin main --tags
     ```
 
-4.  **Merge into `develop`:** The hotfix changes should also be merged into the `develop` branch to ensure that the fix is included in future releases.
+4.  **Sync `main` into `develop`:** After the hotfix has been merged into `main`, merge `main` back into `develop` to ensure that the fix is included in future releases.
 
     ```bash
     git checkout develop
-    git merge --no-ff hotfix-X.Y.Z.A
+    git merge --no-ff main
     git push origin develop
     ```
 
@@ -155,7 +153,7 @@ Critical bugs found in the production release (on the `main` branch) need to be 
 
 - **Team Communication:** Effective communication is crucial to ensure everyone understands the release process, the status of release branches, and the meaning of version numbers and pre-release identifiers.
 - **Branching Discipline:** Strict adherence to the branching model is necessary for the strategy to be effective.
-- **Merge Conflicts:** Be prepared to resolve merge conflicts when merging release branches into `main` and `develop`, and when merging hotfixes.
+- **Merge Conflicts:** Be prepared to resolve merge conflicts when merging release or hotfix branches into `main`, and when synchronizing `main` back into `develop`.
 - **Automation:** Consider automating parts of the release process (e.g., tag creation, build and deployment triggers, version bumping) to improve efficiency.
 - **Strict Semantic Versioning:** Ensure the team understands and follows the rules of Semantic Versioning when determining release versions.
 - **Alpha/Beta Management:** Define clear criteria for when to use alpha and beta releases and how feedback will be handled during these stages.
