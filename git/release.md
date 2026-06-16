@@ -28,14 +28,97 @@ We will utilize the following long-lived branches:
 
 Use the following table to choose the merge strategy when moving changes between branches:
 
-| Source Branch | Target Branch | Recommended Strategy | Example Commands | Reason |
-| --- | --- | --- | --- | --- |
-| `feature/*` | `develop` | Squash merge | `git checkout develop`<br>`git merge --squash feature/my-feature` | Keeps `develop` history clean while preserving the feature as one logical change. |
-| `develop` | `release-X.Y.Z` | Create branch from `develop` | `git checkout develop`<br>`git checkout -b release-X.Y.Z` | Starts release stabilization from the current integrated development state. |
-| `release-X.Y.Z` | `main` | No-fast-forward merge | `git checkout main`<br>`git merge --no-ff release-X.Y.Z` | Creates a visible release merge commit and keeps release history traceable. |
-| `hotfix-X.Y.Z.A` | `main` | No-fast-forward merge | `git checkout main`<br>`git merge --no-ff hotfix-X.Y.Z.A` | Records the production hotfix as a distinct release event. |
-| `main` | `develop` | Required after `main` changes | `git checkout develop`<br>`git merge --no-ff main` | Always sync `main` into `develop` after a release or hotfix is merged into `main`, so future development starts from the latest released code. |
-| `develop` | `feature/*` | Rebase or merge from `develop` | `git checkout feature/my-feature`<br>`git rebase develop` | Keeps feature branches current before opening or updating a pull request. |
+| Source Branch    | Target Branch   | Recommended Strategy           | Example Commands                                                  | Reason                                                                                                                                         |
+| ---------------- | --------------- | ------------------------------ | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `feature/*`      | `develop`       | Squash merge                   | `git checkout develop`<br>`git merge --squash feature/my-feature` | Keeps `develop` history clean while preserving the feature as one logical change.                                                              |
+| `develop`        | `release-X.Y.Z` | Create branch from `develop`   | `git checkout develop`<br>`git checkout -b release-X.Y.Z`         | Starts release stabilization from the current integrated development state.                                                                    |
+| `release-X.Y.Z`  | `main`          | No-fast-forward merge          | `git checkout main`<br>`git merge --no-ff release-X.Y.Z`          | Creates a visible release merge commit and keeps release history traceable.                                                                    |
+| `hotfix-X.Y.Z.A` | `main`          | No-fast-forward merge          | `git checkout main`<br>`git merge --no-ff hotfix-X.Y.Z.A`         | Records the production hotfix as a distinct release event.                                                                                     |
+| `main`           | `develop`       | Required after `main` changes  | `git checkout develop`<br>`git merge --no-ff main`                | Always sync `main` into `develop` after a release or hotfix is merged into `main`, so future development starts from the latest released code. |
+| `develop`        | `feature/*`     | Rebase or merge from `develop` | `git checkout feature/my-feature`<br>`git rebase develop`         | Makes the feature branch appear based on the latest `develop`, helps resolve conflicts early, keeps PR diffs focused on feature changes, and makes the final squash merge cleaner. |
+
+## Merge Types with Graphs
+
+The following examples show the main merge types used in this branching strategy.
+
+### No-Fast-Forward Merge
+
+Use this for release, hotfix, and `main` to `develop` synchronization merges. It always creates a merge commit, even when Git could fast-forward.
+
+```text
+Before:
+
+main:        A---B
+                 \
+release:          C---D
+
+Command:
+
+git checkout main
+git merge --no-ff release-X.Y.Z
+
+After:
+
+main:        A---B-------M
+                 \      /
+release:          C---D
+```
+
+- `M` is the merge commit.
+- This keeps the release or hotfix visible as a distinct event in history.
+
+### Squash Merge
+
+Use this when merging a completed feature branch into `develop`. It combines all feature commits into one new commit on `develop`.
+
+```text
+Before:
+
+develop:     A---B
+                 \
+feature:          C---D---E
+
+Command:
+
+git checkout develop
+git merge --squash feature/my-feature
+git commit -m "Add my feature"
+
+After:
+
+develop:     A---B---S (C---D---E is squashed into S)
+
+feature branch is deleted after the squash commit is pushed.
+```
+
+- `S` is a single squashed commit containing the feature changes.
+- Delete the feature branch after the squash merge is complete.
+
+### Rebase
+
+Use this to update a feature branch with the latest changes from `develop` before opening or updating a pull request.
+
+```text
+Before:
+
+develop:     A---B---C
+              \
+feature:       D---E
+
+Command:
+
+git checkout feature/my-feature
+git rebase develop
+
+After:
+
+develop:     A---B---C
+                     \
+feature:              D'---E'
+```
+
+- `D'` and `E'` are rewritten versions of the feature commits.
+- Rebase is best for local or personal feature branches. Avoid rebasing shared branches unless the team agrees.
 
 ## Release Workflow
 
@@ -55,7 +138,6 @@ The following steps outline the process for preparing and releasing a new versio
       - **PATCH (Z):** Incremented for backwards-compatible bug fixes.
 
 2.  **Release Preparation:** The `release-X.Y.Z` branch is dedicated to final release preparation tasks:
-
     - **Bug Fixing:** Only critical bug fixes related to the upcoming release should be applied to this branch. Avoid introducing new features. These fixes should typically result in an increment of the `PATCH` version.
     - **Documentation Updates:** Update release notes, user manuals, and any other relevant documentation.
     - **Final Testing:** Perform thorough testing on this branch to ensure stability.
@@ -63,7 +145,6 @@ The following steps outline the process for preparing and releasing a new versio
     - **Communicate Changes:** Ensure the team is aware of the ongoing release preparation and any changes being made to the release branch.
 
 3.  **Alpha and Beta Releases (Optional):** For significant new features or changes, we may opt for alpha or beta releases from the `release-*` branch:
-
     - **Alpha Releases:** Early pre-releases, often feature-incomplete and potentially unstable, used for initial feedback. Tagged with a pre-release identifier like `X.Y.Z-alpha.N`.
     - **Beta Releases:** More stable pre-releases with most features implemented, used for wider testing. Tagged with a pre-release identifier like `X.Y.Z-beta.N`.
     - To create an alpha or beta release, you would merge the `release-*` branch into `main` with the appropriate tag:
